@@ -3,7 +3,10 @@
 sysrc conduit_enable="YES"
 sysrc nginx_enable="YES"
 
-SERVER_NAME=your.server.name
+if [ -Z "$SERVER_NAME" ] ; then
+  echo "Using terrible default server name"
+  SERVER_NAME=your.server.name
+fi
 ed /usr/local/etc/conduit.toml << EOF
 /server_name/
 o
@@ -11,7 +14,7 @@ server_name = "$SERVER_NAME"
 .
 wq
 EOF
-ed /usr/local/nginx/nginx.conf << EOF
+ed /usr/local/etc/nginx/nginx.conf << EOF
 $
 -1
 i
@@ -35,12 +38,16 @@ i
 wq
 EOF
 openssl req -x509 -newkey rsa:4096 \
-  -keyout /usr/local/nginx/cert.key \
-  -out /usr/local/nginx/cert.pem \
+  -keyout /usr/local/etc/nginx/cert.key \
+  -out /usr/local/etc/nginx/cert.pem \
   -days 365 -nodes \
   -subj /CN=$SERVER_NAME \
   -addext "subjectAltName = DNS:conduit,DNS:matrix"
 
-echo "You will need to set server_name in /usr/local/etc/conduit.toml and then run
+cat << EOM
+You will need to set server_name in /usr/local/etc/conduit.toml"
+and /usr/local/nginx/nginx.conf, and then run
 
-service conduit start"
+service conduit start
+service nginx start
+EOM
