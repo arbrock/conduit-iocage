@@ -21,7 +21,7 @@ $
 i
     server {
         listen      443 ssl http2;
-        listen      8448 ssh http2;
+        listen      8448 ssl http2;
         listen      [::]:443 ssl http2;
         listen      [::]:8448 ssl http2;
         server_name $SERVER_NAME;
@@ -36,8 +36,8 @@ i
         client_max_body_size 20M;
 
         location /_matrix/ {
-          proxy_pass http://localhost:6167$request_uri;
-          proxy_set_header Host $http_host;
+          proxy_pass http://localhost:6167\$request_uri;
+          proxy_set_header Host \$http_host;
           proxy_buffering off;
         }
     }
