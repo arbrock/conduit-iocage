@@ -39,7 +39,7 @@ openssl req -x509 -newkey rsa:4096 \
   -out /usr/local/nginx/cert.pem \
   -days 365 -nodes \
   -subj /CN=$SERVER_NAME \
-  -addext "subjectAltName = DNS:conduit,DNS:matrix
+  -addext "subjectAltName = DNS:conduit,DNS:matrix"
 
 echo "You will need to set server_name in /usr/local/etc/conduit.toml and then run
 
