@@ -1,14 +1,12 @@
 {
   "name": "conduit",
   "release": "12.3-RELEASE",
-  "artifact": "https://github.com/arbrock/conduit-truenas.git",
+  "artifact": "https://github.com/arbrock/conduit-iocage.git",
   "properties": {
-    "nat": "1",
-    "nat_forwards": "tcp(443:443,8448:8448)"
+    "dhcp": "1"
   },
   "pkgs": [
     "net-im/conduit",
-    "security/py39-certbot-nginx",
     "www/nginx"
   ],
   "packagesite": "http://pkg.FreeBSD.org/${ABI}/quarterly",
