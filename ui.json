@@ -1,0 +1,4 @@
+{
+  "adminportal": "https://%%IP%%:443/",
+  "docurl": "https://gitlab.com/famedly/conduit"
+}
