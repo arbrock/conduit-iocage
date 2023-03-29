@@ -13,6 +13,11 @@ ed /usr/local/etc/conduit.toml << EOF
 i
 server_name = "$SERVER_NAME"
 .
+/database_path/
+d
+i
+database_path = "/var/db/conduit"
+.
 wq
 EOF
 ed /usr/local/etc/nginx/nginx.conf << EOF
