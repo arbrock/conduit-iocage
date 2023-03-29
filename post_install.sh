@@ -56,10 +56,5 @@ openssl req -x509 -newkey rsa:4096 \
   -subj /CN=$SERVER_NAME \
   -addext "subjectAltName = DNS:conduit,DNS:matrix"
 
-cat << EOM
-You will need to set server_name in /usr/local/etc/conduit.toml"
-and /usr/local/nginx/nginx.conf, and then run
-
 service conduit start
 service nginx start
-EOM
