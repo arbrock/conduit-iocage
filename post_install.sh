@@ -4,13 +4,13 @@ sysrc conduit_enable="YES"
 sysrc nginx_enable="YES"
 
 SERVER_NAME=$(hostname)
-if [ -Z "$SERVER_NAME" ] ; then
+if [ -z "$SERVER_NAME" ] ; then
   echo "Using terrible default server name"
   SERVER_NAME=your.server.name
 fi
 ed /usr/local/etc/conduit.toml << EOF
 /server_name/
-o
+i
 server_name = "$SERVER_NAME"
 .
 wq
